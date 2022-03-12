@@ -98,20 +98,3 @@ def passwordGenerator(length):
 # testing
 # print(passwordGenerator(25))
 
-# ----------------------------- Password Manager ---------------------------
-
-
-
-# ----------------------------- Testing  ---------------------------
-
-# def test():
-#     connection = connectDataBase()
-#     accounts = getAccounts(connection)
-#     findPassword(accounts)
-#     savePassword("test1", "test1", "test1", connection)
-#     accounts = getAccounts(connection)
-#     findPassword(accounts)
-#     closeConnection(connection)
-
-
-# test()
