@@ -118,17 +118,3 @@ def passwordGenerator(length):
         password += secrets.choice(seq=characters)
     return password
 
-# testing
-# print(passwordGenerator(25))
-
-# def test2():
-#     connection = connectDataBase()
-#     print("all accounts: ")
-#     accounts = getAllAccounts(connection)
-#     savePassword("test2", "test2", passwordGenerator(5), connection)
-#     findPassword(connection)
-#     deletePassword("test2", "test2", connection)
-#     findPassword(connection)
-#     closeConnection(connection)
-
-# test2()

@@ -34,12 +34,4 @@ def decryptSecret(encrypted):
     secret = auth.decrypt(encrypted.encode())
     return secret.decode()
 
-# def test():
-#     msg=input("Enter the message you want to ENCRYPT : ")
-#     encrypted = encryptSecret(msg)
-#     print(encrypted)
-#     decrypted = decryptSecret(encrypted)
-#     print(decrypted)
-#     print(len(decrypted))
 
-# test()
