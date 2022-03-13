@@ -24,12 +24,22 @@ def encryptSecret(secret):
     text = secret.encode()
     key = getKey()
     auth = Fernet(key)
-    return auth.encrypt(text)
+    encrypted= auth.encrypt(text)
+    return encrypted.decode()
 
 # decrypts message and retrurns message
 def decryptSecret(encrypted):
     key = getKey()
     auth = Fernet(key)
-    return auth.decrypt(encrypted)
+    secret = auth.decrypt(encrypted.encode())
+    return secret.decode()
 
+# def test():
+#     msg=input("Enter the message you want to ENCRYPT : ")
+#     encrypted = encryptSecret(msg)
+#     print(encrypted)
+#     decrypted = decryptSecret(encrypted)
+#     print(decrypted)
+#     print(len(decrypted))
 
+# test()
