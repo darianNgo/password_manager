@@ -11,7 +11,7 @@ import encrypter
 # connects to data base and authenticates user and returns connection
 def connectDataBase():
     user = input("Enter username: ")
-    password = getpass.getpass("Enter Password: ") # TODO: password currently doesnt work
+    password = getpass.getpass("Enter Password: ") 
     connection = None
 
     try:
