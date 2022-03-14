@@ -90,7 +90,6 @@ def managePasswords(connection):
     else:
         return
     
-
 # calls functions to generate a new secure password. 
 # Makes sure the user is satified with the password generated before encrypting and saving it
 # if the user is not satisfied, this function calls itself again and repeats the process
