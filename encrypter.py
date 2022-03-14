@@ -20,7 +20,6 @@ def getKey():
 
 # encrypts message and returns it
 def encryptSecret(secret):
-    generateWriteKey()
     text = secret.encode()
     key = getKey()
     auth = Fernet(key)

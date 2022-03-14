@@ -64,7 +64,6 @@ def findPassword(connection):
         print(count, ":")
         print("     username: ", row[0])
         print("     URL:      ", row[1])
-        print("     encrypted: ", row[2]) # testing
         print("     password: ", encrypter.decryptSecret(row[2]))
 
 
@@ -77,16 +76,28 @@ def getAllAccounts(connection):
     cursor.execute(query)
     passwords = cursor.fetchall()
     count = 0
+    if passwords == None:
+        print("No passwords found")
+    else:
+        print("\nHere are the passwords that were previously saved:\n")
+        for row in passwords:
+            count+=1
+            print(count, ":")
+            print("     username:  ", row[0])
+            print("     URL:       ", row[1])
+            print("     password:  ", encrypter.decryptSecret(row[2]))
+
+# returns the number of entries
+def getNumberOfAccounts(connection):
+    cursor = connection.cursor()
+    query = "select * from accounts"
+    cursor.execute(query)
+    passwords = cursor.fetchall()
+    count = 0
     for row in passwords:
         count+=1
-        print(count, ":")
-        print("     username: ", row[0])
-        print("     URL:      ", row[1])
-        print("     encrypted: ", row[2]) # testing
-        print("     password: ", encrypter.decryptSecret(row[2]))
-    
-    if count == 0:
-        print("No passwords found")
+    return count
+
      
 
 # saves the username, url, and password to the db
@@ -95,13 +106,21 @@ def savePassword(username, url, password, connection):
     encryptedPass = encrypter.encryptSecret(password)
     cursor.execute("INSERT INTO accounts (username, url, password) VALUES(%s, %s, %s)", (username, url, encryptedPass))
     connection.commit()
-    print("Password for username = " + username + " at URL = " + url + " was successfully saved")
+    print("Password for username = " + username + " at URL = " + url + " was successfully SAVED")
 
 def deletePassword(username, url, connection):
     cursor = connection.cursor()
     cursor.execute("DELETE FROM accounts WHERE username = %s AND url = %s", (username, url))
     connection.commit()
-    print("Password for username = " + username + " at URL = " + url + " was successfully deleted")
+    print("Password for username = " + username + " at URL = " + url + " was successfully DELETED")
+
+def updatePassword(username, url, newPassword, connection):
+    cursor = connection.cursor()
+    encryptedPass = encrypter.encryptSecret(newPassword)
+    cursor.execute("UPDATE accounts SET password = %s WHERE username = %s AND url = %s", (encryptedPass, username, url))
+    connection.commit()
+    print("Password for username = " + username + " at URL = " + url + " was successfully UPDATED")
+
 
 
 # ----------------------------- Password Generator ---------------------------
